@@ -28,15 +28,16 @@ namespace MiniRpg.Entity
         public string Job { get { return myJob; } }
         public int CurrentHp { get { return currentHp; } set { currentHp = value; } }
         public int CurrentMana {get {return currentMana;} set{currentMana = value;}}
-        public string[] Skill {get { return skills;}}
-        public int MaxMana {get{return maxMana;}}
-        public int MaxHp {get{return maxHp;}}
-        public int MaxDefend {get{return maxDefense;}}
-        public int MaxDamage {get{return maxDamage;}}
-        public int MinDamage {get{return minDamage;}}
+        public string[] Skill { get { return skills;}}
+        public int MaxMana { get{return maxMana;}}
+        public int MaxHp { get{return maxHp;}}
+        public int MaxDefend { get{return maxDefense;}}
+        public int MaxDamage { get{return maxDamage;}}
+        public int MinDamage { get{return minDamage;}}
+        public Random Random { get{return random;}}
 
 
-        public Character(int maxHp, int maxMana, int maxDefense, int minDamage, int maxDamage, string[] skills, string name, string job)
+        public Character(int maxHp, int maxMana, int maxDefense, int minDamage, int maxDamage, string[] skills, string name, string job, Random random)
         {
             this.maxHp = maxHp;
             this.maxMana = maxMana;

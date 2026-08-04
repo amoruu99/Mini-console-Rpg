@@ -23,6 +23,7 @@ namespace MiniRpg.Entity
         public int MaxDamage { get { return maxDamage; } }
         public int MaxHp { get { return maxHp; } set { maxHp = value; } }
         public int MaxMana { get { return maxMana; } set { maxMana = value; } }
+        public int MaxDefense { get {return maxDefense;}}
         public Random Random { get { return random;} }
 
 

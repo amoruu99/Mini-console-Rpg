@@ -16,6 +16,7 @@ namespace MiniRpg.Entity
     private string[] skills = new string[3];
     private int maxDefense;
     private string myJob;
+    private Random random;
 
     
     public Character CreateCharacter()
@@ -24,10 +25,8 @@ namespace MiniRpg.Entity
             string? characterName;
             string? jobSelection; 
 
-            Console.WriteLine("Create your Hero!");
-            Console.WriteLine("==============\n");
             Console.WriteLine("Who are you young Adventurer?");
-            Console.WriteLine();
+            Console.WriteLine("");
 
             characterName = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(characterName))
@@ -36,8 +35,10 @@ namespace MiniRpg.Entity
             }                        
             while (charCreated != true)
             {
-                Console.WriteLine($"and you are a? \n1. {jobs[0]}, using High Defense dan durability. Lacks of mana\n2. {jobs[1]} High magical power usage, bigger mana but Low at defense and Health\n3. {jobs[2]} Combination high Damage and defense");
-                Console.WriteLine();
+                Console.WriteLine($"and you are a?");
+                Console.WriteLine($"1. {jobs[0]}, using High Defense dan durability. Lacks of mana");
+                Console.WriteLine($"2. {jobs[1]} High magical power usage, bigger mana but Low at defense and Health");
+                Console.WriteLine($"3. {jobs[2]} Combination high Damage and defense");
 
                 jobSelection = Console.ReadLine();
                 if(jobSelection != null)
@@ -45,7 +46,7 @@ namespace MiniRpg.Entity
                     switch (jobSelection)
                     {
                         case "1": // Tank Class selection
-                            Console.WriteLine($"{jobs[0]} ");
+                            Console.Clear();
                             maxHp = 500; // interval global
                             maxMana = 75; // perhitungan 15% dari HP Tank
                             maxDefense = 250; // perhitngan 50% dari HP Tank
@@ -57,7 +58,7 @@ namespace MiniRpg.Entity
                             break;
 
                         case "2": // Mage Class selection
-                            Console.WriteLine($"{jobs[1]} ");
+                            Console.Clear();
                             maxHp = 125; // interval
                             maxMana = 1000; // perhitungan 200 persen dari HP Tank
                             maxDefense = 65; // perhitngan 50% dari HP Mage
@@ -69,7 +70,7 @@ namespace MiniRpg.Entity
                             break;
 
                         case "3": // DPS Class Selection
-                            Console.WriteLine($"{jobs[2]} ");
+                            Console.Clear();
                             maxHp = 250; // 50% of tank HP
                             maxMana = 250; // same as Max HP
                             maxDefense = 120; // 50% of tank Defense
@@ -86,7 +87,7 @@ namespace MiniRpg.Entity
                     }                     
                 }
             }
-            return new Character(maxHp, maxMana, maxDefense, minDamage, maxDamage, skills, name, myJob);   
+            return new Character(maxHp, maxMana, maxDefense, minDamage, maxDamage, skills, name, myJob, random);   
         }
 
     }
