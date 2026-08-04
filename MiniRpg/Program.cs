@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using MiniRpg.Entity;
+using MiniRpg.Asset;
 
 namespace MiniRpg;
 
@@ -13,16 +14,17 @@ public class Program
     {
 
         Console.WriteLine("==========================");
-        Console.WriteLine("TALE OF THE CHAOS MAGE");
-        Console.WriteLine("==========================");
-        Console.WriteLine("Create you Character:");
-        CharacterCreation Player1 = new CharacterCreation();
-        Character player = Player1.CreateCharacter();
+        Console.WriteLine("Welcome to the TALE OF THE CHAOS MAGE");
+        Console.WriteLine("Press any key to continue");
+        Console.ReadKey();
+        Console.Clear();
 
-        Console.WriteLine($"NickName: {player.Name}");
-        Console.WriteLine($"Class: {player.Job}");
-        Console.WriteLine($"HP: {player.CurrentHp}/{player.MaxHp}");
-        Console.WriteLine($"Mana: {player.CurrentMana}/{player.MaxMana}");
+        MainMenuManager mainMenu = new MainMenuManager();
+        mainMenu.MainMenu();
+        
+
+
+
 
 
 

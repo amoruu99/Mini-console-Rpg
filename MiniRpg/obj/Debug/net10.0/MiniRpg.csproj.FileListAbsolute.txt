@@ -12,3 +12,4 @@ C:\Users\DELL\Documents\AMRU TITIP\Learn\ConsoleApp\MiniRpg\obj\Debug\net10.0\re
 C:\Users\DELL\Documents\AMRU TITIP\Learn\ConsoleApp\MiniRpg\obj\Debug\net10.0\MiniRpg.pdb
 C:\Users\DELL\Documents\AMRU TITIP\Learn\ConsoleApp\MiniRpg\obj\Debug\net10.0\MiniRpg.genruntimeconfig.cache
 C:\Users\DELL\Documents\AMRU TITIP\Learn\ConsoleApp\MiniRpg\obj\Debug\net10.0\ref\MiniRpg.dll
+C:\Users\DELL\Documents\AMRU TITIP\Learn\ConsoleApp\MiniRpg\obj\Debug\net10.0\MiniRpg.sourcelink.json

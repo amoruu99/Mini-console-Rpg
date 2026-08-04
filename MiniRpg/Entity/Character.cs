@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using MiniRpg.Entity;
+using MiniRpg.Asset;
 
 namespace MiniRpg.Entity
 {
@@ -48,10 +50,15 @@ namespace MiniRpg.Entity
             this.myJob = job;
             this.random = new Random(); 
         }
+        public void ShowStatus()
+        {
+        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"Class: {Job}");
+        Console.WriteLine($"HP: {CurrentHp}/{MaxHp}");
+        Console.WriteLine($"Mana: {CurrentMana}/{MaxMana}");
+        Console.WriteLine($"Skills {Skill[0]}, {Skill[1]}, {Skill[2]}");
+        }
     }
 
-    public class Monster
-    {
-        
-    }
+
 }
