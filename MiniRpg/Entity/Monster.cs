@@ -36,14 +36,22 @@ namespace MiniRpg.Entity
             }
             public Goblin(string name, int maxDamage, int maxHp, int maxMana, Random random, int maxDefense)
             {
-                this.name = "Goblin Alas";
-                this.maxDamage = random.Next(25, 36);
-                this.maxHp = 150;
-                this.maxMana = 20;
-                this.maxDefense = 15;
-                
+                this.name = name;
+                this.maxDamage = maxDamage;
+                this.maxHp = maxHp;
+                this.maxMana = maxMana;
+                this.maxDefense = maxDefense;                
             }
+           
         }
+        public void StatusGoblin()
+        {
+            name = "Goblin Alas";
+            maxDamage = random.Next(25, 36);
+            maxHp = 150;
+            maxMana = 20;
+            maxDefense = 15;
+        }  
 
         public class Orc : Monster
         {
@@ -52,13 +60,22 @@ namespace MiniRpg.Entity
                 Console.WriteLine("Grok Grok, did you smell something?");
             }
 
-            public Orc(string name, int maxDamage, int maxHp, int maxMana, Random random)
+            public Orc(string name, int maxDamage, int maxHp, int maxMana, Random random, int maxDefense)
             {
-                this.name = "Orc";
-                this.maxDamage = random.Next(35, 51);
-                this.maxHp = 300;
-                this.maxMana = 0;
-                this.maxDefense = 50;
+                this.name = name;
+                this.maxDamage = maxDamage;
+                this.maxHp = maxHp;
+                this.maxMana = maxMana;
+                this.maxDefense = maxDefense;
+            }
+
+            public void StatusOrc()
+            {
+                name = "Orc";
+                maxDamage = random.Next(35, 51);
+                maxHp = 300;
+                maxMana = 0;
+                maxDefense = 50;
             }
         }
     }

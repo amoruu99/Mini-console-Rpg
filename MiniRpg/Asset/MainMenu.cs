@@ -8,23 +8,23 @@ using MiniRpg.DataFlow;
 
 namespace MiniRpg.Asset
 {
-    public class MainMenuManager
+    public class MainMenu
     {   
-        public static MainMenuManager _instance;
-        public static MainMenuManager Instance
+        public static MainMenu _instance;
+        public static MainMenu Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new MainMenuManager();
+                    _instance = new MainMenu();
                 }
                 return _instance;
             }
         }
         public Character player;
 
-        public void MainMenu()
+        public void Menu()
         {
             Console.WriteLine("Main Menu");
             Console.WriteLine("1. New Game");
@@ -48,7 +48,7 @@ namespace MiniRpg.Asset
                 Console.WriteLine("Coming sooon\nPress any key to continue");
                 Console.ReadKey();
                 Console.Clear();
-                MainMenu();
+                Menu();
                 break;
 
                 case "3":
@@ -64,16 +64,48 @@ namespace MiniRpg.Asset
 
                         case "2":
                         Console.Clear();
-                        MainMenu();
+                        Menu();
                         break;
                     }
                 break;
 
                 default:
                 Console.WriteLine("Choose wisely");
-                MainMenu();
+                Menu();
                 break;
             }
         }
     } 
+
+    public class Action
+    {
+        public void BattleMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Choose Action: ");
+            Console.WriteLine("======================");
+            Console.WriteLine("1. Attack\t\t3. Item");
+            Console.WriteLine("2. Skills\t\t4. Run");
+            Console.WriteLine("======================");
+            switch(Console.ReadLine())
+            {
+                case "1":
+                break;
+
+                case "2":
+                break;
+
+                case "3":
+                break;
+
+                case "4":
+                break;
+
+                default:
+                Console.WriteLine("Skipped 1 Turn");
+                BattleMenu();
+                break;
+            }
+        }
+    }
 }

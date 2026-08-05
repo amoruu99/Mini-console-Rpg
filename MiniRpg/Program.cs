@@ -25,19 +25,20 @@ public class Program
         while (gameRunning)
         {
             
-        MainMenuManager mainMenu = new MainMenuManager();
-        mainMenu.MainMenu();
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.Menu();
         Console.ReadKey();
         Console.Clear();
+        
         Character character = mainMenu.player;
         character.ShowStatus();
         
 
         GameTime gameTime = new GameTime();
-        gameTime.Prolog();
-        break;        
-        
 
+        gameTime.Prolog();
+        Console.WriteLine("Press Enter to continue");
+        Console.ReadLine();
         }
 
 
