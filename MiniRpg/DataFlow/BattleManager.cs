@@ -10,58 +10,40 @@ namespace MiniRpg.DataFlow
 {
     public class BattleManager
     {
-        Monster monster = new Monster();
-        public int CriticalDamage()
+        public int PlayerCritical(Character player)
         {
-            Character character = MainMenu.Instance.player;
-            int criticalDamage = character.MaxDamage *2;
+            int criticalDamage = player.Damage * 2;
+            Console.WriteLine($"{player.Name} Commit a Critical Hit");
             return criticalDamage;
         }
-
-        public int Damage()
+        public int MonsterCritical(Monster monster)
         {
-            Character character = MainMenu.Instance.player;
-            int damage = character.Random.Next(character.MinDamage, character.MaxDamage) * (monster.MaxDefense / 100);
-            return damage;
+            int criticalDamage = monster.Damage * 2;
+            Console.WriteLine($"{monster.Name} Commit a Critical Hit");
+            return criticalDamage;
+        }
+        public void CommitBattle(Character player, Monster monster)
+        {
+            
         }
 
-        public void Battle()
+        public void PlayerAttack(Character player, Monster monster)
         {
-            bool isDead = false;
-            while(isDead == false)
+            
+        }
+        public void MonsterAttack(Monster moster, Character player)
+        {
+            
+        }
+        
+        public void Turn(Character player, Monster monster)
+        {
+            bool isPlayer = false;
+            do
             {
-                if (MainMenu.Instance.player.MaxHp == 0)
-                {
-                    Console.WriteLine("You are Died, going back to Main Menu");
-                    Console.ReadLine();
-                    Console.Clear();
-                    isDead = true;
-                    MainMenu.Instance.Menu();
-                }
-                else if (monster.MaxHp == 0)
-                {
-                    Console.WriteLine($"You have Slain the {monster.Name}");
-                    isDead = true;
-
-                    
-                }
-            }
-        }
-
-
-        public void Attack()
-        {
-            Entity.Monster monster = new Entity.Monster();
-            monster.StatusGoblin();
-
-            MainMenu.Instance.player.CurrentHp -= Damage();
-            monster.MaxHp -= Damage();
-        }
-        public void Turn()
-        {
             Asset.Action action = new Asset.Action();
             action.BattleMenu();
-            Battle();
+            }while (isPlayer == true);
         }
     }
 }

@@ -9,7 +9,7 @@ using MiniRpg.DataFlow;
 namespace MiniRpg.Asset
 {
     public class MainMenu
-    {   
+    {
         public static MainMenu _instance;
         public static MainMenu Instance
         {
@@ -31,80 +31,86 @@ namespace MiniRpg.Asset
             Console.WriteLine("2. Load Game");
             Console.WriteLine("3. Exit");
             Console.WriteLine("Choose wisely");
-    
-            switch(Console.ReadLine())
+
+            switch (Console.ReadLine())
             {
                 case "1":
-                Console.Clear();
-                Console.WriteLine("Create you Character:");                
-                CharacterCreation Creator = new CharacterCreation();
-                player = Creator.CreateCharacter();
-                Console.WriteLine($"Good Choice young man, you are now a {player.Job}");
-                player.ShowStatus();
-                break;
+                    Console.Clear();
+                    Console.WriteLine("Create you Character:");
+                    CharacterCreation Creator = new CharacterCreation();
+                    player = Creator.CreateCharacter();
+                    Console.WriteLine($"Good Choice young man, you are now a {player.Job}");
+                    player.ShowStatus();
+                    break;
 
                 case "2":
-                Console.Clear();
-                Console.WriteLine("Coming sooon\nPress any key to continue");
-                Console.ReadKey();
-                Console.Clear();
-                Menu();
-                break;
+                    Console.Clear();
+                    Console.WriteLine("Coming sooon\nPress any key to continue");
+                    Console.ReadKey();
+                    Console.Clear();
+                    Menu();
+                    break;
 
                 case "3":
-                Console.Clear();
-                Console.WriteLine("Are you sure?\n1. Yes\n2. No");
-                switch(Console.ReadLine())
+                    Console.Clear();
+                    Console.WriteLine("Are you sure?\n1. Yes\n2. No");
+                    switch (Console.ReadLine())
                     {
                         case "1":
-                        Console.Clear();
-                        Console.WriteLine("Goodbye!");
-                        Environment.Exit(0);
-                        break;
+                            Console.Clear();
+                            Console.WriteLine("Goodbye!");
+                            Environment.Exit(0);
+                            break;
 
                         case "2":
-                        Console.Clear();
-                        Menu();
-                        break;
+                            Console.Clear();
+                            Menu();
+                            break;
                     }
-                break;
+                    break;
 
                 default:
-                Console.WriteLine("Choose wisely");
-                Menu();
-                break;
+                    Console.WriteLine("Choose wisely");
+                    Menu();
+                    break;
             }
         }
-    } 
+    }
 
     public class Action
     {
         public void BattleMenu()
         {
-            Console.Clear();
-            Console.WriteLine("Choose Action: ");
-            Console.WriteLine("======================");
-            Console.WriteLine("1. Attack\t\t3. Item");
-            Console.WriteLine("2. Skills\t\t4. Run");
-            Console.WriteLine("======================");
-            switch(Console.ReadLine())
+            bool hasAttacked = true;
+            while (hasAttacked == false)
             {
-                case "1":
-                break;
+                Console.Clear();
+                Console.WriteLine("Choose Action: ");
+                Console.WriteLine("======================");
+                Console.WriteLine("1. Attack\t\t3. Item");
+                Console.WriteLine("2. Skills\t\t4. Run");
+                Console.WriteLine("======================");
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                    
+                    hasAttacked = true;
+                        break;
 
-                case "2":
-                break;
+                    case "2":
+                        break;
 
-                case "3":
-                break;
+                    case "3":
+                        break;
 
-                case "4":
-                break;
+                    case "4":
+                        break;
 
-                default:
-                Console.WriteLine("Skipped 1 Turn");
-                BattleMenu();
-                break;
+                    default:
+                        Console.WriteLine("Skipped 1 Turn");
+                        hasAttacked = true;
+                        break;
+                }
             }
         }
     }

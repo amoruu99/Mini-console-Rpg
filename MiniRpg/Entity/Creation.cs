@@ -7,8 +7,7 @@ namespace MiniRpg.Entity
 {
     internal class CharacterCreation
     {
-    private int maxDamage;
-    private int minDamage;
+    private int damage;
     private int maxHp;
     private int maxMana;
     private string? name;
@@ -50,8 +49,7 @@ namespace MiniRpg.Entity
                             maxHp = 500; // interval global
                             maxMana = 75; // perhitungan 15% dari HP Tank
                             maxDefense = 250; // perhitngan 50% dari HP Tank
-                            minDamage = 50;
-                            maxDamage = 100;
+                            damage = random.Next(50, 101);
                             skills = ["Divine Protection", "Shield Bash", "Shield Charge"];
                             charCreated = true;
                             myJob = jobs[0];
@@ -62,8 +60,7 @@ namespace MiniRpg.Entity
                             maxHp = 125; // interval
                             maxMana = 1000; // perhitungan 200 persen dari HP Tank
                             maxDefense = 65; // perhitngan 50% dari HP Mage
-                            minDamage = 100;
-                            maxDamage = 200;
+                            damage = random.Next(100, 201);
                             skills = ["Fire Bolt", "Chain Lighting", "Fireball"];
                             charCreated = true;
                             myJob = jobs[1];
@@ -74,8 +71,7 @@ namespace MiniRpg.Entity
                             maxHp = 250; // 50% of tank HP
                             maxMana = 250; // same as Max HP
                             maxDefense = 120; // 50% of tank Defense
-                            minDamage = 200;
-                            maxDamage = 250;
+                            damage = random.Next(200, 251);
                             skills = ["Assasinate","Sword Slash", "Flash Step"];
                             charCreated = true;
                             myJob = jobs[2];
@@ -87,7 +83,7 @@ namespace MiniRpg.Entity
                     }                     
                 }
             }
-            return new Character(maxHp, maxMana, maxDefense, minDamage, maxDamage, skills, name, myJob, random);   
+            return new Character(maxHp, maxMana, maxDefense, damage, skills, name, myJob, random);   
         }
 
     }

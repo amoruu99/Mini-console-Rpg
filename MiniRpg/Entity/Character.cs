@@ -12,8 +12,7 @@ namespace MiniRpg.Entity
     {
         private int currentHp;
         private int currentMana;
-        private int maxDamage;
-        private int minDamage;
+        private int damage;
         private int maxHp;
         private int maxMana;
         private string name;
@@ -31,21 +30,19 @@ namespace MiniRpg.Entity
         public string[] Skill { get { return skills;}}
         public int MaxMana { get{return maxMana;}}
         public int MaxHp { get{return maxHp;}}
-        public int MaxDefend { get{return maxDefense;}}
-        public int MaxDamage { get{return maxDamage;}}
-        public int MinDamage { get{return minDamage;}}
+        public int MaxDefense { get{return maxDefense;}}
+        public int Damage { get{return damage;} set{damage = value;}}
         public Random Random { get{return random;}}
 
 
-        public Character(int maxHp, int maxMana, int maxDefense, int minDamage, int maxDamage, string[] skills, string name, string job, Random random)
+        public Character(int maxHp, int maxMana, int maxDefense, int damage, string[] skills, string name, string job, Random random)
         {
             this.maxHp = maxHp;
             this.maxMana = maxMana;
             this.currentHp = maxHp;
             this.currentMana = maxMana;
             this.maxDefense = maxDefense;
-            this.maxDamage = maxDamage;
-            this.minDamage = minDamage;
+            this.damage = damage;
             this.skills = skills;
             this.name = name;
             this.myJob = job;
