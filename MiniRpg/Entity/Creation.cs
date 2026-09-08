@@ -79,7 +79,7 @@ namespace MiniRpg.Entity
                             break;
 
                         default:
-                            Console.WriteLine("Choose your Class, or do you have a second though to be a adventurer?");
+                            Console.WriteLine("Choose your Class, or do you have a second though to be an adventurer?");
                             break;
                     }                     
                 }

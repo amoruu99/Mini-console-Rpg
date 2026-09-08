@@ -14,7 +14,7 @@ namespace MiniRpg.DataFlow
     public class BattleManager
     {
         internal Character? player = MainMenu._instance.player;
-        internal Monster? monster;
+        internal Monster? monster = CreateMonster();
         internal void BattleStart(Entity.Entity attacker, Entity.Entity target)
         {
             
@@ -22,8 +22,8 @@ namespace MiniRpg.DataFlow
             {
                 player = (Character)attacker;
                 if (target is Monster.Goblin)
-                {
-                    monster = (Monster.Goblin)target;
+                {                    
+                    monster = ()target;
                     Console.WriteLine($"A wild {target.Name} has appeared");
                 }
                 else
@@ -92,7 +92,7 @@ namespace MiniRpg.DataFlow
                 switch (result)
                 {
                     case "1":                        
-                        BattleManager.Attack();
+                        BattleManager.Attack(MainMenu.Instance.player, Entity.Entity.monster);
                         Console.WriteLine("Press any key to end your turn");
                         hasAttacked = true;
                         break;
