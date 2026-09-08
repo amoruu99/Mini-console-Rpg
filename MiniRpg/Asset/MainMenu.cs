@@ -74,6 +74,7 @@ namespace MiniRpg.Asset
                     Menu();
                     break;
             }
-        }
+            ;
+        }        
     }    
 }

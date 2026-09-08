@@ -40,7 +40,7 @@ namespace MiniRpg.Entity
 
                 default:
                     throw new Exception("More monster to be updated");
-            }            
+            }
         }        
 
         public class Goblin : Monster

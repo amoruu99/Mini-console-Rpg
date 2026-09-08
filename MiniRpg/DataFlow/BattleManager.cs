@@ -14,23 +14,16 @@ namespace MiniRpg.DataFlow
     public class BattleManager
     {
         internal Character? player = MainMenu._instance.player;
-        internal Monster? monster = CreateMonster();
+        internal Monster? monster = Monster.CreateMonster();
+        
         internal void BattleStart(Entity.Entity attacker, Entity.Entity target)
         {
             
             if (attacker is Character)
             {
-                player = (Character)attacker;
-                if (target is Monster.Goblin)
-                {                    
-                    monster = ()target;
-                    Console.WriteLine($"A wild {target.Name} has appeared");
-                }
-                else
-                {
-                    monster = (Monster.Orc)target;
-                    Console.WriteLine($"A wild {target.Name} has appeared");
-                }                           
+                player = (Character) attacker;
+                monster = (Monster)target;
+
             }
         }
         internal int Critical(int damage)
@@ -39,12 +32,12 @@ namespace MiniRpg.DataFlow
             return criticalDamage;
         }
 
-        internal void Attack(Entity.Entity attacker, Entity.Entity target)
+        internal void Attack()
         {
-            BattleStart(attacker, target);
-            if (attacker is Character)
+            BattleStart(player, monster);
+            if (player is Character)
             {
-                int damage = attacker.Damage;
+                int damage = player.Damage;
                 int randomNumber = new Random().Next(1, 11);
                 if (randomNumber <= 3)
                 {
@@ -52,14 +45,14 @@ namespace MiniRpg.DataFlow
                 }
                 else if (randomNumber <= 8)
                 {
-                    attacker.Damage -= target.CurrentHp;
-                    Console.WriteLine($"{attacker.Name} attack {target.Name} for {damage} damage");
+                    player.CurrentHp -= damage;
+                    Console.WriteLine($"{player.Name} attack {monster.Name} for {damage} damage");
                 }
                 else
                 {
                     Critical(damage);
-                    damage -= target.CurrentHp;
-                    Console.WriteLine($"{attacker.Name} Commit a Critical Hit. dealing {damage} damage");
+                    player.CurrentHp -= damage;
+                    Console.WriteLine($"{player.Name} Commit a Critical Hit. dealing {damage} damage");
                 }
             }
         }
@@ -79,7 +72,7 @@ namespace MiniRpg.DataFlow
     {
         public void BattleMenu()
         {            
-            bool hasAttacked = true;            
+            bool hasAttacked = false;            
             while (hasAttacked == false)
             {
                 Console.Clear();
@@ -92,7 +85,7 @@ namespace MiniRpg.DataFlow
                 switch (result)
                 {
                     case "1":                        
-                        BattleManager.Attack(MainMenu.Instance.player, Entity.Entity.monster);
+                        BattleManager.Attack(MainMenu.Instance.player, BattleManager.monster);
                         Console.WriteLine("Press any key to end your turn");
                         hasAttacked = true;
                         break;

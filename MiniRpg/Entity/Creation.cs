@@ -7,7 +7,7 @@ namespace MiniRpg.Entity
 {
     internal class CharacterCreation
     {
-    private string name;
+    private string? name;
     private int damage;
     private int maxHp;
     private int currentHp;
@@ -17,7 +17,7 @@ namespace MiniRpg.Entity
     private int maxDefense;
     private string[] jobs = { "Tank", "Mage", "DPS" };
     private string[] skills = new string[3];
-    private string myJob;    
+    private string? myJob;    
     
     public Character CreateCharacter()
         {
