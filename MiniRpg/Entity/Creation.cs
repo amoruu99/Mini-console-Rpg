@@ -7,16 +7,17 @@ namespace MiniRpg.Entity
 {
     internal class CharacterCreation
     {
+    private string name;
     private int damage;
     private int maxHp;
+    private int currentHp;
     private int maxMana;
-    private string? name;
+    private int currentMana;
+    private Random random = new Random();
+    private int maxDefense;
     private string[] jobs = { "Tank", "Mage", "DPS" };
     private string[] skills = new string[3];
-    private int maxDefense;
-    private string myJob;
-    private Random random;
-
+    private string myJob;    
     
     public Character CreateCharacter()
         {
@@ -83,7 +84,7 @@ namespace MiniRpg.Entity
                     }                     
                 }
             }
-            return new Character(maxHp, maxMana, maxDefense, damage, skills, name, myJob, random);   
+            return new Character(name, damage, maxHp, currentHp, maxMana, currentMana, random, maxDefense, myJob, skills);   
         }
 
     }

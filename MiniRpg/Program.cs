@@ -14,11 +14,12 @@ public class Program
     public static void Main()
     {
 
-        Console.WriteLine("==========================");
+        /*Console.WriteLine("======================================");
         Console.WriteLine("Welcome to the TALE OF THE CHAOS MAGE");
+        Console.WriteLine("======================================");
         Console.WriteLine("Press any key to continue");
         Console.ReadKey();
-        Console.Clear();
+        Console.Clear();*/
 
         bool gameRunning = true;
     
@@ -31,24 +32,15 @@ public class Program
         Console.Clear();
         
         Character character = mainMenu.player;
-        character.ShowStatus();
+        character?.ShowStatus();
         
-
         GameTime gameTime = new GameTime();
-
         gameTime.Prolog();
         Console.WriteLine("Press Enter to continue");
         Console.ReadLine();
         }
-
-
-        
-
-
-
-
-
-
+        /*MainMenu mainMenu = new MainMenu();
+        mainMenu.Menu();   */             
     }
 
 }

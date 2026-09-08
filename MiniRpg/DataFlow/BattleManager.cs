@@ -1,49 +1,145 @@
+using MiniRpg.Asset;
+using MiniRpg.DataFlow;
+using MiniRpg.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MiniRpg.Entity;
-using MiniRpg.Asset;
 using System.Threading.Tasks.Dataflow;
+using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MiniRpg.DataFlow
 {
     public class BattleManager
     {
-        public int PlayerCritical(Character player)
-        {
-            int criticalDamage = player.Damage * 2;
-            Console.WriteLine($"{player.Name} Commit a Critical Hit");
-            return criticalDamage;
-        }
-        public int MonsterCritical(Monster monster)
-        {
-            int criticalDamage = monster.Damage * 2;
-            Console.WriteLine($"{monster.Name} Commit a Critical Hit");
-            return criticalDamage;
-        }
-        public void CommitBattle(Character player, Monster monster)
+        internal Character? player = MainMenu._instance.player;
+        internal Monster? monster;
+        internal void BattleStart(Entity.Entity attacker, Entity.Entity target)
         {
             
+            if (attacker is Character)
+            {
+                player = (Character)attacker;
+                if (target is Monster.Goblin)
+                {
+                    monster = (Monster.Goblin)target;
+                    Console.WriteLine($"A wild {target.Name} has appeared");
+                }
+                else
+                {
+                    monster = (Monster.Orc)target;
+                    Console.WriteLine($"A wild {target.Name} has appeared");
+                }                           
+            }
+        }
+        internal int Critical(int damage)
+        {
+            int criticalDamage = damage * 2;            
+            return criticalDamage;
         }
 
-        public void PlayerAttack(Character player, Monster monster)
+        internal void Attack(Entity.Entity attacker, Entity.Entity target)
         {
-            
-        }
-        public void MonsterAttack(Monster moster, Character player)
-        {
-            
+            BattleStart(attacker, target);
+            if (attacker is Character)
+            {
+                int damage = attacker.Damage;
+                int randomNumber = new Random().Next(1, 11);
+                if (randomNumber <= 3)
+                {
+                    Console.WriteLine($"{attacker.Name} Tried to Attack but Missed");
+                }
+                else if (randomNumber <= 8)
+                {
+                    attacker.Damage -= target.CurrentHp;
+                    Console.WriteLine($"{attacker.Name} attack {target.Name} for {damage} damage");
+                }
+                else
+                {
+                    Critical(damage);
+                    damage -= target.CurrentHp;
+                    Console.WriteLine($"{attacker.Name} Commit a Critical Hit. dealing {damage} damage");
+                }
+            }
         }
         
-        public void Turn(Character player, Monster monster)
+        internal void Turn()
         {
             bool isPlayer = false;
             do
             {
-            Asset.Action action = new Asset.Action();
+            Action action = new Action();
             action.BattleMenu();
-            }while (isPlayer == true);
+            }while (isPlayer == false);
+        }
+    }
+
+    internal class Action
+    {
+        public void BattleMenu()
+        {            
+            bool hasAttacked = true;            
+            while (hasAttacked == false)
+            {
+                Console.Clear();
+                Console.WriteLine("Choose Action: ");
+                Console.WriteLine("======================");
+                Console.WriteLine("1. Attack\t\t3. Item");
+                Console.WriteLine("2. Skills\t\t4. Run");
+                Console.WriteLine("======================");
+                var result = Console.ReadLine();
+                switch (result)
+                {
+                    case "1":                        
+                        BattleManager.Attack();
+                        Console.WriteLine("Press any key to end your turn");
+                        hasAttacked = true;
+                        break;
+
+                    case "2":
+                        break;
+
+                    case "3":
+                        break;
+
+                    case "4":
+                        break;
+
+                    default:
+                        Console.WriteLine("Skipped 1 Turn");
+                        hasAttacked = true;
+                        break;
+                }
+            }
         }
     }
 }
+
+/*
+BattleManager
+│
+├── Player
+│
+├── Monster
+│
+├── BattleStart()
+│   └── "A wild Goblin/Orc appeared!"
+│
+├── Turn()
+│
+├── Attack()
+│   └── RNG 1-10
+│       ├── 1-3  → Miss
+│       ├── 4-8  → Basic Attack
+│       └── 9-10 → Critical ×2
+│
+├── Item()
+│
+├── Skill()
+│
+├── Flee()
+│
+└── CheckBattleState()
+    └── Check CurrentHp
+*/

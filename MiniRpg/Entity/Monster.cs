@@ -3,34 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MiniRpg.Entity
 {
-    public class Monster
+    internal class Monster : Entity
     {
-        private string name;
-        private int damage;
-        private int maxHp;
-        private int currentHp;
-        private int maxMana;
-        private int currentMana;
-        private Random random;
-        private int maxDefense;
+        public Monster(string name, int damage, int maxHp, int currentHp, int maxMana, int currentMana, Random random, int maxDefense)
+        :base(name, damage, maxHp, currentHp, maxMana, currentMana, random, maxDefense)
+        {
+
+        }        
         public virtual void Said()
         {
             Console.WriteLine("Rumbling Sounds heard");
         }
 
-        public string Name { get { return name; } }
-        public int Damage { get { return damage; } }
-        public int MaxHp { get { return maxHp; } }
-        public int CurrentHp {get{return currentHp;} set {currentHp = value;}}
-        public int MaxMana { get { return maxMana; } }
-        public int CurrentMana {get{return currentMana;} set {currentMana = value;}}
-        public int MaxDefense { get {return maxDefense;}}
-        public Random Random { get { return random;} }
+        internal static Monster CreateMonster()
+        {
+            Random random = new Random();
+            var monsterType = random.Next(1, 3);
+            switch (monsterType)
+            {
+                case 1:
+                    Goblin goblin1 = new Goblin("No Name", 0, 0, 0, 0, 0, random, 0);
+                    goblin1.StatusGoblin();
+                    goblin1.Said();
+                    return goblin1;
 
+                case 2:
+                    Orc orc1 = new Orc("No Name", 0, 0, 0, 0, 0, random, 0);
+                    orc1.StatusOrc();
+                    orc1.Said();
+                    return orc1;
 
+                default:
+                    throw new Exception("More monster to be updated");
+            }            
+        }        
 
         public class Goblin : Monster
         {
@@ -38,26 +49,24 @@ namespace MiniRpg.Entity
             {
                 Console.WriteLine("Kekekeke!!, new prey new prey");
             }
-            public Goblin(string name, int damage, int maxHp, int currentHp, int maxMana,int currentMana, Random random, int maxDefense)
+
+            public Goblin(string name, int damage, int maxHp, int currentHp, int maxMana, int currentMana, Random random, int maxDefense)
+                : base(name, damage, maxHp, currentHp, maxMana, currentMana, random, maxDefense)
             {
-                this.name = name;
-                this.damage = damage;
-                this.maxHp = maxHp;
-                this.currentHp = currentHp;
-                this.maxMana = maxMana;
-                this.currentMana = currentMana;
-                this.maxDefense = maxDefense;                
+                              
             }
-           
+            public Monster StatusGoblin()
+            {
+                Name = "Goblin Alas";
+                Damage = Random.Next(25, 36);
+                MaxHp = 150;
+                MaxMana = 20;
+                MaxDefense = 15;
+                return new Goblin(Name, Damage, MaxHp, CurrentHp, MaxMana, CurrentMana, Random, MaxDefense);
+            }
+
         }
-        public void StatusGoblin()
-        {
-            name = "Goblin Alas";
-            damage = random.Next(25, 36);
-            maxHp = 150;
-            maxMana = 20;
-            maxDefense = 15;
-        }  
+
 
         public class Orc : Monster
         {
@@ -66,24 +75,19 @@ namespace MiniRpg.Entity
                 Console.WriteLine("Grok Grok, did you smell something?");
             }
 
-            public Orc(string name, int damage, int maxHp, int currentHp, int maxMana,int currentMana, Random random, int maxDefense)
+            public Orc(string name, int damage, int maxHp, int currentHp, int maxMana, int currentMana, Random random, int maxDefense)
+                : base(name, damage, maxHp, currentHp, maxMana, currentMana, random, maxDefense)
             {
-                this.name = name;
-                this.damage = damage;
-                this.maxHp = maxHp;
-                this.currentHp = currentHp;
-                this.maxMana = maxMana;
-                this.currentMana = currentMana;
-                this.maxDefense = maxDefense;  
             }
 
-            public void StatusOrc()
+            public Monster StatusOrc()
             {
-                name = "Orc";
-                damage = random.Next(35, 51);
-                maxHp = 300;
-                maxMana = 0;
-                maxDefense = 50;
+                Name = "Orc";
+                Damage = Random.Next(35, 51);
+                MaxHp = 300;
+                MaxMana = 0;
+                MaxDefense = 50;
+                return new Orc(Name, Damage, MaxHp, CurrentHp, MaxMana, CurrentMana, Random, MaxDefense);
             }
         }
     }
