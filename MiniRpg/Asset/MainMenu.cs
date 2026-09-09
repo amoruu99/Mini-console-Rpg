@@ -40,7 +40,7 @@ namespace MiniRpg.Asset
                     CharacterCreation Creator = new CharacterCreation();
                     player = Creator.CreateCharacter();
                     Console.WriteLine($"Good Choice young man, you are now a {player.Job}");
-                    player.ShowStatus();
+                    Character.ShowStatus(player);
                     break;
 
                 case "2":

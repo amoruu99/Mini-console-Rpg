@@ -25,13 +25,13 @@ namespace MiniRpg.Entity
             this.skills = skills;            
             this.myJob = job;            
         }
-        public void ShowStatus()    
+        public static void ShowStatus(Character player)    
         {
-        Console.WriteLine($"Name: {Name}");
-        Console.WriteLine($"Class: {Job}");
-        Console.WriteLine($"HP: {CurrentHp}/{MaxHp}");
-        Console.WriteLine($"Mana: {CurrentMana}/{MaxMana}");
-        Console.WriteLine($"Skills {Skill[0]}, {Skill[1]}, {Skill[2]}");
+        Console.WriteLine($"Name: {player.Name}");
+        Console.WriteLine($"Class: {player.Job}");
+        Console.WriteLine($"HP: {player.CurrentHp}/{player.MaxHp}");
+        Console.WriteLine($"Mana: {player.CurrentMana}/{player.MaxMana}");
+        Console.WriteLine($"Skills {player.Skill[0]}, {player.Skill[1]}, {player.Skill[2]}");
         }
     }
 

@@ -31,13 +31,17 @@ public class Program
         Console.ReadKey();
         Console.Clear();
         
-        Character character = mainMenu.player;
-        character?.ShowStatus();
+        Character player = mainMenu.player;
+        Character.ShowStatus(player);
         
-        GameTime gameTime = new GameTime();
-        gameTime.Prolog();
+        /*GameTime gameTime = new GameTime();
+        gameTime.Prolog();*/
         Console.WriteLine("Press Enter to continue");
         Console.ReadLine();
+
+        BattleManager battle = new BattleManager();
+            battle.BattleStart();
+
         }
         /*MainMenu mainMenu = new MainMenu();
         mainMenu.Menu();   */             
