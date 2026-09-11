@@ -29,10 +29,14 @@ namespace MiniRpg.Entity
             Console.WriteLine("");
 
             characterName = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(characterName))
+            if (characterName == null)
+            {
+                Console.WriteLine("Invalid Name");
+            }
+            else
             {
                 name = characterName;
-            }                        
+            }
             while (charCreated != true)
             {
                 Console.WriteLine($"and you are a?");

@@ -24,8 +24,7 @@ public class Program
         bool gameRunning = true;
     
         while (gameRunning)
-        {
-            
+        {            
         MainMenu mainMenu = new MainMenu();
         mainMenu.Menu();
         Console.ReadKey();
@@ -38,9 +37,9 @@ public class Program
         gameTime.Prolog();*/
         Console.WriteLine("Press Enter to continue");
         Console.ReadLine();
-
-        BattleManager battle = new BattleManager();
-            battle.BattleStart();
+        
+        BattleManager battle = new BattleManager(mainMenu.player);
+        battle.Encounter();
 
         }
         /*MainMenu mainMenu = new MainMenu();

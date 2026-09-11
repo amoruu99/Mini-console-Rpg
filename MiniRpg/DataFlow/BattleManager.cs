@@ -11,47 +11,66 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace MiniRpg.DataFlow
 {
-    public class BattleManager
+    internal class BattleManager(Character player)
     {
-        internal Character? player = MainMenu._instance?.player;
-        internal Monster? monster = Monster.CreateMonster();
+        internal Character player = MainMenu.Instance.player;
+        internal Monster monster = Monster.CreateMonster();        
         
-        internal void BattleStart()
-        {            
+        internal void Encounter()
+        {
+
             Console.WriteLine("A {0} appeared!", monster.Name);
             Console.WriteLine($"Entering the Battle");            
             Console.WriteLine("Do you want to fight? (Y/N)");
             string input = Console.ReadLine();
             if (input.ToUpper() == "Y")
             {
-                CheckBattleState(player, monster);
+                player = MainMenu.Instance.player;
+                BattleStart();
             }
             else
             {
-                Console.WriteLine("What a Coward!!");
-                Environment.Exit(0);
-            }
-        }
-        internal void Attack(Entity.Entity attacker, Entity.Entity target)
-        {
-                int damage = attacker.Damage;
-                int randomNumber = new Random().Next(1, 11);
-                if (randomNumber <= 3)
+                int rng = new Random().Next(1, 51);
+                if (rng <= 25)
                 {
-                    Console.WriteLine($"{attacker.Name} Tried to Attack but Missed");
-                }
-                else if (randomNumber <= 8)
-                {
-                    attacker.CurrentHp -= damage;
-                    Console.WriteLine($"{attacker.Name} attack {target.Name} for {damage} damage");
-                }
+                    Console.WriteLine("Flee is failed, Attack");
+                    BattleStart();
+                } 
                 else
                 {
-                    Critical(damage);
-                    attacker.CurrentHp -= damage;
-                    Console.WriteLine($"{attacker.Name} Commit a Critical Hit. dealing {damage} damage");
+                    Console.WriteLine("Flee success. going back to Town");
                 }
-            
+                
+            }
+        }
+
+        internal void BattleStart()
+        {
+            PlayerTurn();
+            CheckBattleState(player, monster);
+            MonsterTurn();
+            CheckBattleState(player, monster);
+        }
+
+        internal void Attack(Entity.Entity attacker, Entity.Entity target)
+        {
+            var damage = attacker.Damage;
+            int randomNumber = new Random().Next(1, 11);
+            if (randomNumber <= 3)
+            {
+                Console.WriteLine($"{attacker.Name} Tried to Attack but Missed");
+            }
+            else if (randomNumber <= 8)
+            {
+                target.CurrentHp -= damage;
+                Console.WriteLine($"{attacker.Name} attack {target.Name} for {damage} damage");
+            }
+            else
+            {
+                int criticalDamage = Critical(damage);
+                target.CurrentHp -= criticalDamage;
+                Console.WriteLine($"{attacker.Name} Commit a Critical Hit. dealing {criticalDamage} damage");
+            }
         }
         
         internal void PlayerTurn()
@@ -67,24 +86,19 @@ namespace MiniRpg.DataFlow
         }
       
         internal void CheckBattleState(Entity.Entity attacker, Entity.Entity target)
-        {
-            while (attacker.CurrentHp > 0 && target.CurrentHp > 0)
-            {
-                PlayerTurn();
+        {                          
                 if (player.CurrentHp <= 0)
                 {
-                    Console.WriteLine($"{player.Name} has been defeated!");
-                    break;
+                    Console.WriteLine($"{player.Name} has been defeated!");                    
                 }
-                MonsterTurn();
+                
                 if (monster.CurrentHp <= 0)
                 {
-                    Console.WriteLine($"{monster.Name} has been annihilated!");
-                    break;
+                    Console.WriteLine($"{monster.Name} has been annihilated!");                    
                 }
             }
 
-        }
+        
         public void BattleMenu()
         {
             bool hasAttacked = false;
