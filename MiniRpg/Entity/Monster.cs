@@ -19,7 +19,6 @@ namespace MiniRpg.Entity
         {
             Console.WriteLine("Rumbling Sounds heard");
         }
-
         internal static Monster CreateMonster()
         {
             Random random = new Random();
@@ -60,14 +59,13 @@ namespace MiniRpg.Entity
                 Name = "Goblin Alas";
                 Damage = Random.Next(25, 36);
                 MaxHp = 150;
+                CurrentHp = MaxHp;
                 MaxMana = 20;
+                CurrentMana = MaxMana;
                 MaxDefense = 15;
                 return new Goblin(Name, Damage, MaxHp, CurrentHp, MaxMana, CurrentMana, Random, MaxDefense);
             }
-
         }
-
-
         public class Orc : Monster
         {
             public override void Said()
@@ -85,7 +83,9 @@ namespace MiniRpg.Entity
                 Name = "Orc";
                 Damage = Random.Next(35, 51);
                 MaxHp = 300;
+                CurrentHp = MaxHp;
                 MaxMana = 0;
+                CurrentMana = MaxMana;
                 MaxDefense = 50;
                 return new Orc(Name, Damage, MaxHp, CurrentHp, MaxMana, CurrentMana, Random, MaxDefense);
             }

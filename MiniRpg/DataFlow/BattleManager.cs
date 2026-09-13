@@ -24,7 +24,7 @@ namespace MiniRpg.DataFlow
         internal void Encounter()
         {
 
-            Console.WriteLine("A {0} appeared!", monster.Name);
+            Console.WriteLine("A {0} has appeared!", monster.Name);
             Console.WriteLine($"Entering the Battle");
             Console.WriteLine("Do you want to fight? (Y/N)");
             string input = Console.ReadLine();
@@ -49,20 +49,21 @@ namespace MiniRpg.DataFlow
         }
         internal void BattleStart()
         {
-            bool isDead = false;
-            while (isDead != true)
+            while (player.CurrentHp > 0 && monster.CurrentHp > 0)
             {
-                if (player.CurrentHp <= 0)
-                {
-                    MonsterTurn();
-                    Console.WriteLine($"{player.Name} is dead. Game Over!");
-                    isDead = true;
-                }
+                Console.Clear();
+                Character.ShowStatus(player);
+                PlayerTurn();
                 if (monster.CurrentHp <= 0)
                 {
-                    PlayerTurn();
-                    Console.WriteLine($"{monster.Name} has been defeated. You Win!");
-                    isDead = true;
+                    Console.WriteLine("You Win!");                    
+                    break;
+                }                
+                MonsterTurn();
+                if (player.CurrentHp <= 0)
+                {
+                    Console.WriteLine("You Lose!");
+                    break;
                 }
             }
         }
@@ -78,13 +79,23 @@ namespace MiniRpg.DataFlow
             else if (randomNumber <= 8)
             {
                 target.CurrentHp -= damage;
+                if (target.CurrentHp <= 0)
+                {
+                    target.CurrentHp = 0;
+                }
                 Console.WriteLine($"{attacker.Name} attack {target.Name} for {damage} damage");
+                Console.WriteLine($"{target.CurrentHp} Hp Left");                
             }
             else
             {
                 int criticalDamage = Critical(damage);
                 target.CurrentHp -= criticalDamage;
+                if (target.CurrentHp <= 0)
+                {
+                    target.CurrentHp = 0;
+                }
                 Console.WriteLine($"{attacker.Name} Commit a Critical Hit. dealing {criticalDamage} damage");
+                Console.WriteLine($"{target.CurrentHp} Hp Left");
             }
         }
         
@@ -98,6 +109,7 @@ namespace MiniRpg.DataFlow
         {
             Console.WriteLine("Enemy turn to attack");
             Attack(monster, player);
+            Console.ReadKey();
         }
       
         /*internal void CheckBattleState()
@@ -121,8 +133,7 @@ namespace MiniRpg.DataFlow
         {
             bool hasAttacked = false;
             while (hasAttacked != true)
-            {
-                Console.Clear();
+            {                
                 Console.WriteLine("    Choose Action:    ");
                 Console.WriteLine("======================");
                 Console.WriteLine("1. Attack      3. Item");

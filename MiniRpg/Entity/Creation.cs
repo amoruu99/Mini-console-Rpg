@@ -17,13 +17,13 @@ namespace MiniRpg.Entity
     private int maxDefense;
     private string[] jobs = { "Tank", "Mage", "DPS" };
     private string[] skills = new string[3];
-    private string? myJob;    
-    
-    public Character CreateCharacter()
+    private string? myJob;
+
+        public Character CreateCharacter()
         {
             bool charCreated = false;
             string? characterName;
-            string? jobSelection; 
+            string? jobSelection;
 
             Console.WriteLine("Who are you young Adventurer?");
             Console.WriteLine("");
