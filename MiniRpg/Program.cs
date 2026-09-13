@@ -38,7 +38,7 @@ public class Program
         Console.WriteLine("Press Enter to continue");
         Console.ReadLine();
         
-        BattleManager battle = new BattleManager(mainMenu.player);
+        BattleManager battle = new BattleManager(player);
         battle.Encounter();
 
         }

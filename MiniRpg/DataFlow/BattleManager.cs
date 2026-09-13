@@ -4,6 +4,7 @@ using MiniRpg.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using System.Xml.Linq;
@@ -11,21 +12,24 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace MiniRpg.DataFlow
 {
-    internal class BattleManager(Character player)
+    internal class BattleManager
     {
-        internal Character player = MainMenu.Instance.player;
+        public BattleManager(Character player)
+        {
+            this.player = player;
+        }
+
+        internal Character player;         
         internal Monster monster = Monster.CreateMonster();        
-        
         internal void Encounter()
         {
 
             Console.WriteLine("A {0} appeared!", monster.Name);
-            Console.WriteLine($"Entering the Battle");            
+            Console.WriteLine($"Entering the Battle");
             Console.WriteLine("Do you want to fight? (Y/N)");
             string input = Console.ReadLine();
             if (input.ToUpper() == "Y")
-            {
-                player = MainMenu.Instance.player;
+            {                
                 BattleStart();
             }
             else
@@ -49,12 +53,12 @@ namespace MiniRpg.DataFlow
             PlayerTurn();
             CheckBattleState(player, monster);
             MonsterTurn();
-            CheckBattleState(player, monster);
+            CheckBattleState(monster, player);
         }
 
         internal void Attack(Entity.Entity attacker, Entity.Entity target)
         {
-            var damage = attacker.Damage;
+            int damage = attacker.Damage;
             int randomNumber = new Random().Next(1, 11);
             if (randomNumber <= 3)
             {
@@ -86,17 +90,17 @@ namespace MiniRpg.DataFlow
         }
       
         internal void CheckBattleState(Entity.Entity attacker, Entity.Entity target)
-        {                          
-                if (player.CurrentHp <= 0)
-                {
-                    Console.WriteLine($"{player.Name} has been defeated!");                    
-                }
-                
-                if (monster.CurrentHp <= 0)
-                {
-                    Console.WriteLine($"{monster.Name} has been annihilated!");                    
-                }
+        {
+            if (player.CurrentHp <= 0)
+            {
+                Console.WriteLine($"{player.Name} has been defeated!");                
             }
+                
+            if (monster.CurrentHp <= 0)
+            {
+                Console.WriteLine($"{monster.Name} has been annihilated!");
+            }
+        }
 
         
         public void BattleMenu()
