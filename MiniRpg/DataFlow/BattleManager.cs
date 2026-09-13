@@ -47,13 +47,24 @@ namespace MiniRpg.DataFlow
                 
             }
         }
-
         internal void BattleStart()
         {
-            PlayerTurn();
-            CheckBattleState(player, monster);
-            MonsterTurn();
-            CheckBattleState(monster, player);
+            bool isDead = false;
+            while (isDead != true)
+            {
+                if (player.CurrentHp <= 0)
+                {
+                    MonsterTurn();
+                    Console.WriteLine($"{player.Name} is dead. Game Over!");
+                    isDead = true;
+                }
+                if (monster.CurrentHp <= 0)
+                {
+                    PlayerTurn();
+                    Console.WriteLine($"{monster.Name} has been defeated. You Win!");
+                    isDead = true;
+                }
+            }
         }
 
         internal void Attack(Entity.Entity attacker, Entity.Entity target)
@@ -89,30 +100,33 @@ namespace MiniRpg.DataFlow
             Attack(monster, player);
         }
       
-        internal void CheckBattleState(Entity.Entity attacker, Entity.Entity target)
+        /*internal void CheckBattleState()
         {
-            if (player.CurrentHp <= 0)
+            bool isDead = false;
+            while (isDead != true)
             {
-                Console.WriteLine($"{player.Name} has been defeated!");                
-            }
-                
-            if (monster.CurrentHp <= 0)
-            {
-                Console.WriteLine($"{monster.Name} has been annihilated!");
-            }
-        }
-
-        
-        public void BattleMenu()
+                if (player.CurrentHp <= 0)
+                {
+                    Console.WriteLine($"{player.Name} is dead. Game Over!");
+                    isDead = true;
+                }
+                if (monster.CurrentHp <= 0)
+                {
+                    Console.WriteLine($"{monster.Name} has been defeated. You Win!");
+                    isDead = true;
+                }
+            }            
+        }*/
+        internal void BattleMenu()
         {
             bool hasAttacked = false;
             while (hasAttacked != true)
             {
                 Console.Clear();
-                Console.WriteLine("Choose Action: ");
+                Console.WriteLine("    Choose Action:    ");
                 Console.WriteLine("======================");
-                Console.WriteLine("1. Attack\t\t3. Item");
-                Console.WriteLine("2. Skills\t\t4. Run");
+                Console.WriteLine("1. Attack      3. Item");
+                Console.WriteLine("2. Skills      4. Run ");
                 Console.WriteLine("======================");
                 var result = Console.ReadLine();
                 switch (result)
@@ -120,6 +134,7 @@ namespace MiniRpg.DataFlow
                     case "1":
                         Attack(player, monster);
                         Console.WriteLine("Press any key to end your turn");
+                        Console.ReadKey();
                         hasAttacked = true;
                         break;
 
