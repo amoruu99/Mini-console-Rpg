@@ -1,10 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MiniRpg.Entity;
-using MiniRpg.Asset;
-using MiniRpg.DataFlow;
 
 namespace MiniRpg.Asset
 {
@@ -24,17 +19,18 @@ namespace MiniRpg.Asset
         }
         internal Character? player;
 
-        public void Menu()
+        public bool Menu()
         {
+            bool isExit = false;
             Console.WriteLine("Main Menu");
             Console.WriteLine("1. New Game");
             Console.WriteLine("2. Load Game");
             Console.WriteLine("3. Exit");
             Console.WriteLine("Choose wisely");
-
-            switch (Console.ReadLine())
+            int gameChoice = int.Parse(Console.ReadLine());            
+            switch (gameChoice)
             {
-                case "1":
+                case 1:
                     Console.Clear();
                     Console.WriteLine("Create you Character:");
                     CharacterCreation Creator = new CharacterCreation();
@@ -43,38 +39,36 @@ namespace MiniRpg.Asset
                     Character.ShowStatus(player);
                     break;
 
-                case "2":
+                case 2:
                     Console.Clear();
                     Console.WriteLine("Coming sooon\nPress any key to continue");
                     Console.ReadKey();
-                    Console.Clear();
-                    Menu();
+                    Console.Clear();                        
                     break;
 
-                case "3":
+                case 3:
                     Console.Clear();
                     Console.WriteLine("Are you sure?\n1. Yes\n2. No");
-                    switch (Console.ReadLine())
+                    int exit = int.Parse(Console.ReadLine());
+                    switch (exit)
                     {
-                        case "1":
+                        case 1:
                             Console.Clear();
                             Console.WriteLine("Goodbye!");
-                            Environment.Exit(0);
+                            isExit = true;
                             break;
 
-                        case "2":
-                            Console.Clear();
-                            Menu();
+                        case 2:
+                            Console.Clear();                                
                             break;
                     }
-                    break;
+                    return isExit;
 
                 default:
-                    Console.WriteLine("Choose wisely");
-                    Menu();
-                    break;
-            }
-            ;
+                    Console.WriteLine("Choose wisely");                        
+                    break;  
+            }            
+        return isExit;
         }        
     }    
 }
