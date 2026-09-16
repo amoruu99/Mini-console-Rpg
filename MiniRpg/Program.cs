@@ -28,9 +28,7 @@ public class Program
         
         BattleManager battle = new BattleManager(player);
         battle.Encounter();
-        }*/
-        GameStart gameStart = new GameStart();
-        gameStart.StartGame();             
+        }*/                
     }
 
 }

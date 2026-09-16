@@ -5,18 +5,6 @@ namespace MiniRpg.Asset
 {
     public class MainMenu
     {
-        public static MainMenu? _instance;
-        public static MainMenu Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new MainMenu();
-                }
-                return _instance;
-            }
-        }
         internal Character? player;
 
         public bool Menu()

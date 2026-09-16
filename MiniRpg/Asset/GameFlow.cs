@@ -1,14 +1,11 @@
 ﻿using MiniRpg.Asset;
 using MiniRpg.DataFlow;
 using MiniRpg.Entity;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace MiniRpg
+namespace MiniRpg.Asset
 {    
-    internal class GameStart
-    {
+    internal class GameFlow
+    {        
         bool gameRunning = true;
         public void StartGame()
         {
@@ -19,10 +16,12 @@ namespace MiniRpg
                 if (isExit)
                 {
                     gameRunning = false;
+                    break;
                 }
                 Console.ReadKey();
                 Console.Clear();
 
+                
                 Character player = mainMenu.player;
                 Character.ShowStatus(player);
                 Console.ReadKey();
@@ -33,4 +32,35 @@ namespace MiniRpg
             }
         }
     }
+
+    internal class GamePlay
+    {
+
+    }
 }
+
+
+/*GameFlow
+│
+├── MainMenu
+│
+├── New Game
+│   │
+│   ├── CharacterCreation
+│   │
+│   └── Prologue
+│       │
+│       ├── World asal
+│       ├── Isekai
+│       └── Dunia baru
+│
+├── Gameplay
+│   │
+│   ├── Town
+│   ├── Adventurer Guild
+│   ├── Quest
+│   ├── Exploration
+│   └── Encounter
+│
+└── Battle
+    └── BattleManager*/
