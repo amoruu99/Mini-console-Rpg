@@ -21,15 +21,17 @@ public class Program
         Character player = mainMenu.player;
         Character.ShowStatus(player);
         
-        *//*GameTime gameTime = new GameTime();
-        gameTime.Prolog();*//*
+        
         Console.WriteLine("Press Enter to continue");
         Console.ReadLine();
         
         BattleManager battle = new BattleManager(player);
         battle.Encounter();
-        }*/                
+        }*/
+        GameTime gameTime = new GameTime();
+        gameTime.Prolog();
     }
+
 
 }
 
