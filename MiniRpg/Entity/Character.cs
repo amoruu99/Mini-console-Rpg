@@ -9,8 +9,7 @@ using MiniRpg.Asset;
 namespace MiniRpg.Entity
 {
     internal class Character : Entity
-    {
-        private string[] jobs = { "Tank", "Mage", "DPS" };
+    {        
         private string[] skills;        
         private string myJob;        
 

@@ -11,6 +11,7 @@ namespace MiniRpg.Asset
         {
             while (gameRunning)
             {
+                GameTime prolog = new GameTime();
                 MainMenu mainMenu = new MainMenu();
                 var isExit = mainMenu.Menu();
                 if (isExit)
@@ -25,17 +26,10 @@ namespace MiniRpg.Asset
                 Character player = mainMenu.player;
                 Character.ShowStatus(player);
                 Console.ReadKey();
-
-                BattleManager battle = new BattleManager(player);
-                battle.Encounter();
                 
+                prolog.Prolog();
             }
         }
-    }
-
-    internal class GamePlay
-    {
-
     }
 }
 

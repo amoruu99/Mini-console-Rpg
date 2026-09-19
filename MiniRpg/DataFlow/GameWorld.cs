@@ -30,12 +30,14 @@ namespace MiniRpg.DataFlow
                 }                
                 Console.WriteLine();
                 Console.ReadKey();
-                Thread.Sleep(1500);                
+                Thread.Sleep(1500);
             }
         }
-        public void TownEnterance()
+        public void Town()
         {
             // The Town of Lumina (Luminous and peaceful)
+            string name = "Town of Lumina";
+
             string[] luminaDescription =
             {
                 "[ Area: The Town of Lumina ]",
@@ -53,14 +55,22 @@ namespace MiniRpg.DataFlow
                 "[1] The Adventurer's Guild (Register / Take Quests)",
                 "[2] The Local Blacksmith (Buy / Sell Equipment)",
                 "[3] The Quiet Inn (Rest / Save Game)",
-                "[4] Return to the Wilderness (Combat Area)"
+                "[4] Go To West Point Gate (Gathering or Combat)"
             };
-        }
 
+            foreach (string lumina in luminaDescription)
+            {
+                Console.WriteLine(lumina);
+                Thread.Sleep(1000);
+            }
+            Console.ReadKey();
+        }
         public void ForestEnterance()
         {
             // Forest 1: Beginner Area (For Entry Level)
-        string[] whisperingWoodsDesc = 
+            string name = "Whishpering Woods Forest";
+
+            string[] whisperingWoodsDesc = 
             {
                 "[ Area: The Whispering Woods ]",
                 "",
@@ -75,9 +85,15 @@ namespace MiniRpg.DataFlow
                 "[2] Forage for herbs (Gather)",
                 "[3] Return to Lumina"
             };
+            foreach (string whisperingWood in whisperingWoodsDesc)
+            {
+                Console.WriteLine(whisperingWood);
+                Thread.Sleep(1000);
+            }
+            Console.ReadKey();
 
         // Forest 2: Intermediate Area (Darker and More Dangerous)
-        string[] ashenThicketDesc = 
+            string[] ashenThicketDesc = 
             {
                 "[ Area: The Ashen Thicket ]",
                 "",
@@ -92,6 +108,12 @@ namespace MiniRpg.DataFlow
                 "[2] Search the ruined campsite (Explore)",
                 "[3] Retreat to safety"
             };
+            foreach (string ashenThicket in ashenThicketDesc)
+            {
+                Console.WriteLine(ashenThicket);
+                Thread.Sleep(1000);
+            }
+            Console.ReadKey();
         }
 
         public void DungeonEnterance()
@@ -129,24 +151,6 @@ namespace MiniRpg.DataFlow
                 "[2] Mine for rare magical shards (Gather)",
                 "[3] Run away before it sees you"
             };
-        }
-    }
-
-    internal class GamePlaces
-    {
-        public static void Town()
-        {
-
-        }
-
-        public static void Forest()
-        {
-
-        }
-
-        public static void Dungeon()
-        {
-
         }
     }
 }
