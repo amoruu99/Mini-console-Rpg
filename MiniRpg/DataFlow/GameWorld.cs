@@ -18,7 +18,10 @@ namespace MiniRpg.DataFlow
                 "You soon realize that this is not the world you once knew.",
                 "You have no answers, no allies, and no way back home.",
                 "But a nearby town offers one thing you desperately need: a chance to start over.",
-                "You decide to become an adventurer. Perhaps, somewhere along the way, you will discover who you truly are."
+                "You decide to become an adventurer. Perhaps, " +
+                "somewhere along the way, you will discover who you truly are.",
+                "You take a deep breath, and walk towards the closeby town",
+                "You enter the Town of Lumina"
             };
 
             foreach (string lines in prologLines)
@@ -33,38 +36,11 @@ namespace MiniRpg.DataFlow
                 Thread.Sleep(1500);
             }
         }
-        public void Town()
-        {
-            // The Town of Lumina (Luminous and peaceful)
-            string name = "Town of Lumina";
+    }
 
-            string[] luminaDescription =
-            {
-                "[ Area: The Town of Lumina ]",
-                "",
-                "The town of Lumina lives up to its name. Soft, glowing crystals float",
-                "above the cobblestone streets, pushing back the dark wilderness you just left.",
-                "",
-                "It is not a noisy city, but a quiet sanctuary. Other lone wanderers and",
-                "mercenaries stand near the alleyways, keeping to themselves.",
-                "",
-                "Near the center of the town stands the Adventurer's Guild. Its wooden doors",
-                "are wide open, offering a fresh start to anyone willing to risk their life.",
-                "",
-                "[ Points of Interest ]",
-                "[1] The Adventurer's Guild (Register / Take Quests)",
-                "[2] The Local Blacksmith (Buy / Sell Equipment)",
-                "[3] The Quiet Inn (Rest / Save Game)",
-                "[4] Go To West Point Gate (Gathering or Combat)"
-            };
-
-            foreach (string lumina in luminaDescription)
-            {
-                Console.WriteLine(lumina);
-                Thread.Sleep(1000);
-            }
-            Console.ReadKey();
-        }
+    internal class World
+    {
+    
         public void ForestEnterance()
         {
             // Forest 1: Beginner Area (For Entry Level)

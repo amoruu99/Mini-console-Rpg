@@ -13,6 +13,7 @@ namespace MiniRpg.Asset
             {
                 GameTime prolog = new GameTime();
                 MainMenu mainMenu = new MainMenu();
+                World world = new World();
                 var isExit = mainMenu.Menu();
                 if (isExit)
                 {
